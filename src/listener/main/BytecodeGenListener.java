@@ -413,6 +413,27 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 		String l2 = symbolTable.newLabel();
 		String lend = symbolTable.newLabel();
 
+		switch(ctx.getChild(1).getText()){
+			case "and":
+				expr += newTexts.get(ctx.expr(0));
+				expr +=  "ifne " + l2 + "\n";
+				expr +=  "ldc 0\n";
+				expr +=  "goto "+lend+"\n";
+				expr += l2 + ":\n";
+				expr += newTexts.get(ctx.expr(1));
+				expr += lend + ":\n";
+				return expr;
+			case "or":
+				expr += newTexts.get(ctx.expr(0));
+				expr +=  "ifeq " + l2 + "\n";
+				expr +=  "ldc 1\n";
+				expr +=  "goto "+lend+"\n";
+				expr += l2 + ":\n";
+				expr += newTexts.get(ctx.expr(1));
+				expr += lend + ":\n";
+				return expr;
+		}
+
 		expr += newTexts.get(ctx.expr(0));
 		expr += newTexts.get(ctx.expr(1));
 		//String id = symbolTable.getVarId(ctx.expr(0).IDENT().getText());
