@@ -591,8 +591,8 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 		String op = ctx.getChild(0).getText();
 		String expr = newTexts.get(ctx.expr());
 //		System.out.println("Single : "+expr); // DEBUG
-		result = expr
-				+ "iload " + symbolTable.getVarId(arrow_variable) + "\n";
+		result = "iload " + symbolTable.getVarId(arrow_variable) + "\n"
+				+ expr;
 
 		switch (op) {
 			case "+":
