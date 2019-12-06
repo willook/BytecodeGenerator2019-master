@@ -1,10 +1,14 @@
-int add(int x, int y) {
-	int z ;
-	z = x+y;
-	return z;
-}
+void main() {
+    int d = 3;
+    int b = 1;
+    int c = 6;
+    int f = 4;
+    int h;
 
-void main () {
-	int t = 33;
-	_print(add(1,t));
+    if( c>5)
+        while(c != f) {
+            _print(f);
+            if(d<10)
+                ++  f;
+        }
 }

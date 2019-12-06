@@ -1,22 +1,13 @@
-int sum(int a, int b) {
-    return a+b;
+int add(int x, int y) {
+   int z;
+   z = x+y;
+   return z;
 }
 
-int sub(int a, int b) {
-    return sum(a, -b);
-}
-void main() {
-    int a = 3;
-    int b = 5;
-    int c = 0;
-    while(b<10) {
-        ++b;
-        if(a or c) {
-            _print(a);
-            a = sum(a, -1);
-            c = sub(b, 2);
-        }
-    }
-
-    return;
+void main () {
+   int t = 10;
+   while(t!=0) {
+       _print(add(0,t));
+       --t;
+   }
 }

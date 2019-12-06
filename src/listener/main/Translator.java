@@ -32,7 +32,7 @@ public class Translator {
 	
 	public static void main(String[] args) throws Exception
 	{
-		CharStream codeCharStream = CharStreams.fromFileName("test.c");
+		CharStream codeCharStream = CharStreams.fromFileName("test/test5.c");
 		MiniCLexer lexer = new MiniCLexer(codeCharStream);
 		CommonTokenStream tokens = new CommonTokenStream( lexer );
 		MiniCParser parser = new MiniCParser( tokens );

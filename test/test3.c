@@ -1,14 +1,13 @@
-void main() {
-    int d = 3;
-    int b = 1;
-    int c = 6;
-    int f = 4;
-    int h;
+int add(int x, int y) {
+   int z;
+   z = x+y;
+   return z;
+}
 
-    if( c>5)
-        while(c != f) {
-            _print(f);
-            if(d<10)
-                ++  f;
-        }
+void main () {
+   int t = 10;
+   while(! ((t-2)<5)) {
+       _print(add(0,t));
+       --t;
+   }
 }

@@ -88,13 +88,13 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 		}
 		newTexts.put(ctx, classProlog + var_decl + fun_decl);
 		System.out.println(newTexts.get(ctx));
-		/*
+
 		try {
 			BufferedWriter bw = new BufferedWriter(new BufferedWriter(new FileWriter("Test.j")));
 			bw.write(newTexts.get(ctx));
 			bw.close();
 		} catch(Exception e){}
-		*/
+
 	}	
 	
 	
