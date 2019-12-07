@@ -79,7 +79,11 @@ public class SymbolTable {
 	void putParams(ParamsContext params) {
 		if(params.VOID() != null) return;
 		for(int i = 0; i < params.param().size(); i++) {
-			putLocalVar(getParamName(params.param(i)), Type.INT);
+			if (isArrayParam(params.param(i))) {
+				putLocalVar(getParamName(params.param(i)), Type.INTARRAY);
+			} else {
+				putLocalVar(getParamName(params.param(i)), Type.INT);
+			}
 		}
 	}
 	
