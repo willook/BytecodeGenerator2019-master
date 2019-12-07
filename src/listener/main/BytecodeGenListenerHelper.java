@@ -130,4 +130,20 @@ public class BytecodeGenListenerHelper {
 	static String getCurrentClassName() {
 		return "Test";
 	}
+
+	static boolean isArrayParam(ParamContext ctx) {
+		return ctx.getChildCount() == 4;
+	}
+
+	static String needLoad(String input, String ctx) {
+		String[] lines = input.split("\n");
+		String last = lines[lines.length - 1];
+		String[] ctxLines = ctx.split("\n");
+		String ctxLast = ctxLines[ctxLines.length - 1];
+
+		if (last.contains("--") || last.contains("++")) {
+			return ctxLast.replace("store", "load");
+		}
+		return "";
+	}
 }
