@@ -225,6 +225,11 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 			String vId = symbolTable.getVarId(ctx);
 			varDecl += "ldc " + ctx.LITERAL().getText() + "\n"
 					+ "istore " + vId + "\n";
+		} else if (isArrayDecl(ctx)) {
+			String vId = symbolTable.getVarId(ctx);
+			varDecl += "ldc " + ctx.LITERAL().getText() + "\n"
+					+ "newarray int" + "\n"
+					+ "astore " + vId + "\n";
 		}
 		
 		newTexts.put(ctx, varDecl);
@@ -349,11 +354,25 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 			if(ctx.args() != null){		// function calls
 				expr = handleFunCall(ctx, expr);
 			} else { // expr
-				// Arrays: TODO  
+				// Arrays: TODO
+				// aload (id)
+				// expr
+				// iaload
+				expr = "aload " + symbolTable.getVarId(ctx.IDENT().getText()) + "\n"
+				     + newTexts.get(ctx.expr(0))
+					 + "iaload" + "\n";
 			}
 		}
-		// IDENT '[' expr ']' '=' expr
-		else { // Arrays: TODO			*/
+		// IDENT '[' expr ']' '=' expr a[0] = ++i;
+		else if (ctx.getChildCount() == 6){ // Arrays: TODO			*/
+			String expr0 = newTexts.get(ctx.expr(0));
+			String expr1 = newTexts.get(ctx.expr(1));
+			expr = "aload " + symbolTable.getVarId(ctx.IDENT().getText()) + "\n"
+				 + expr0;
+			expr += needLoad(ctx.expr(0).getText(), expr0) + "\n";
+			expr += expr1;
+			expr += needLoad(ctx.expr(1).getText(), expr1) + "\n";
+			expr += "iastore" + "\n";
 		}
 		newTexts.put(ctx, expr);
 	}
