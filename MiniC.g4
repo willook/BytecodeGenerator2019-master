@@ -39,6 +39,8 @@ expr	:  LITERAL
 	| IDENT				 
 	| IDENT '[' expr ']'			 
 	| IDENT '(' args ')'
+	| '+' expr
+	| '-' expr
 	| '--' expr				 
 	| '++' expr				 
 	| expr '*' expr				 
