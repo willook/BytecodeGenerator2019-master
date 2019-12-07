@@ -1,4 +1,4 @@
-// Generated from C:/Users/user/Desktop/practice_coding/Altlr\MiniC.g4 by ANTLR 4.7.2
+// Generated from C:/Users/rhqnr/Desktop/project/Compiler/BytecodeGenerator2019-master\MiniC.g4 by ANTLR 4.7.2
  
 package generated;
 
@@ -100,6 +100,16 @@ public interface MiniCListener extends ParseTreeListener {
 	 */
 	void exitExpr_stmt(MiniCParser.Expr_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MiniCParser#arrow_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrow_stmt(MiniCParser.Arrow_stmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniCParser#arrow_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrow_stmt(MiniCParser.Arrow_stmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MiniCParser#while_stmt}.
 	 * @param ctx the parse tree
 	 */
@@ -169,4 +179,24 @@ public interface MiniCListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArgs(MiniCParser.ArgsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiniCParser#arrow}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrow(MiniCParser.ArrowContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniCParser#arrow}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrow(MiniCParser.ArrowContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiniCParser#single_expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSingle_expr(MiniCParser.Single_exprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniCParser#single_expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSingle_expr(MiniCParser.Single_exprContext ctx);
 }
