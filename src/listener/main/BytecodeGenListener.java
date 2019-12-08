@@ -66,7 +66,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 	@Override
 	public void enterLocal_decl(Local_declContext ctx) {
 		if (isArrayDecl(ctx)) {
-			symbolTable.putLocalVar(getLocalVarName(ctx), Type.INTARRAY);
+			symbolTable.putLocalVarWithInitVal(getLocalVarName(ctx), Type.INTARRAY, Integer.parseInt(ctx.LITERAL().toString()));
 		}
 		else if (isDeclWithInit(ctx)) {
 			symbolTable.putLocalVarWithInitVal(getLocalVarName(ctx), Type.INT, initVal(ctx));
