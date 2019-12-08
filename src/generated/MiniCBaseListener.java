@@ -1,4 +1,4 @@
-// Generated from C:/Users/user/Desktop/practice_coding/Altlr\MiniC.g4 by ANTLR 4.7.2
+// Generated from C:/Users/rhqnr/Desktop/project/Compiler/BytecodeGenerator2019-master\MiniC.g4 by ANTLR 4.7.2
  
 package generated;
 
@@ -12,8 +12,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-
-
 public class MiniCBaseListener implements MiniCListener {
 	/**
 	 * {@inheritDoc}
@@ -128,6 +126,18 @@ public class MiniCBaseListener implements MiniCListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterArrow_stmt(MiniCParser.Arrow_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArrow_stmt(MiniCParser.Arrow_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterWhile_stmt(MiniCParser.While_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -207,6 +217,30 @@ public class MiniCBaseListener implements MiniCListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArgs(MiniCParser.ArgsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArrow(MiniCParser.ArrowContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArrow(MiniCParser.ArrowContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSingle_expr(MiniCParser.Single_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSingle_expr(MiniCParser.Single_exprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

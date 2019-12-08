@@ -17,12 +17,14 @@ params		: param (',' param)*
 		|			;
 param		: type_spec IDENT		
 		| type_spec IDENT '[' ']'	;
-stmt		: expr_stmt			
+stmt		: expr_stmt
+        | arrow_stmt
 		| compound_stmt			
 		| if_stmt			
 		| while_stmt			
 		| return_stmt			;
 expr_stmt	: expr ';'			;
+arrow_stmt  : IDENT arrow ';'         ;
 while_stmt	: WHILE '(' expr ')' stmt	;
 compound_stmt: '{' local_decl* stmt* '}'	;
 local_decl	: type_spec IDENT ';'
@@ -36,9 +38,9 @@ expr	:  LITERAL
 	| '(' expr ')'				 
 	| IDENT				 
 	| IDENT '[' expr ']'			 
-	| IDENT '(' args ')'			
-	| '-' expr				 
-	| '+' expr				 
+	| IDENT '(' args ')'
+	| '+' expr
+	| '-' expr
 	| '--' expr				 
 	| '++' expr				 
 	| expr '*' expr				 
@@ -59,7 +61,11 @@ expr	:  LITERAL
 	| IDENT '[' expr ']' '=' expr		;
 args	: expr (',' expr)*			 
 	|					 ;
-
+arrow   : ARROW single_expr (ARROW single_expr)* ;
+single_expr : '+' expr
+    | '-' expr
+    | '*' expr
+    | '/' expr;
 VOID: 'void';
 INT: 'int';
 
@@ -73,6 +79,7 @@ LE: '<=';
 GE: '>=';
 EQ: '==';
 NE: '!=';
+ARROW: '->';
 
 IDENT  : [a-zA-Z_]
         (   [a-zA-Z_]
