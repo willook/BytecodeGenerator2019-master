@@ -607,27 +607,43 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 	@Override
 	public void exitSingle_expr(MiniCParser.Single_exprContext ctx) {
 		String result = "";
-		String op = ctx.getChild(0).getText();
+		String op = getOperationText(ctx.getChild(0).getText());
 		String expr = newTexts.get(ctx.expr());
 //		System.out.println("Single : "+expr); // DEBUG
-		result = "iload " + symbolTable.getVarId(arrow_variable) + "\n"
-				+ expr;
+		if (symbolTable.getVarType(arrow_variable) == Type.INT){
+			result = "iload " + symbolTable.getVarId(arrow_variable) + "\n"
+					+ expr;
 
+			result += op;
+			result += "istore " + symbolTable.getVarId(arrow_variable) + "\n";
+		}
+		else if (symbolTable.getVarType(arrow_variable) == Type.INTARRAY){
+			int arraySize= symbolTable.getVarInitValue(arrow_variable);
+			for (int i = 0; i < arraySize; i++) {
+				//Todo 배열 0 ~ size - 1(포함) 까지 값 업데이트;
+				//Example int a[2] = { 1, 2 }; a -> + 3; a = { 4, 5 }
+//				result += "aload " + symbolTable.getVarId(arrow_variable) + "\n"
+//						+ "ldc " + i + "\n"
+//						+ expr;
+//				result += op;
+//				result += "iastore " +
+			}
+		}
+
+		newTexts.put(ctx, result);
+	}
+
+	private String getOperationText(String op) {
 		switch (op) {
 			case "+":
-				result += "iadd\n";
-				break;
+				return "iadd\n";
 			case "-":
-				result += "isub\n";
-				break;
+				return "isub\n";
 			case "*":
-				result += "imul\n";
-				break;
+				return "imul\n";
 			case "/":
-				result += "idiv\n";
-				break;
+				return "idiv\n";
 		}
-		result += "istore " + symbolTable.getVarId(arrow_variable) + "\n";
-		newTexts.put(ctx, result);
+		return null;
 	}
 }

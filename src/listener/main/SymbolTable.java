@@ -148,6 +148,21 @@ public class SymbolTable {
 		
 		return Type.ERROR;	
 	}
+
+	int getVarInitValue(String name){
+		VarInfo lvar = (VarInfo) _lsymtable.get(name);
+		if (lvar != null) {
+			return lvar.initVal;
+		}
+
+		VarInfo gvar = (VarInfo) _gsymtable.get(name);
+		if (gvar != null) {
+			return lvar.initVal;
+		}
+
+		return 0;
+	}
+
 	String newLabel() {
 		return "label" + _labelID++;
 	}
