@@ -618,16 +618,42 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 			result += "istore " + symbolTable.getVarId(arrow_variable) + "\n";
 		}
 		else if (symbolTable.getVarType(arrow_variable) == Type.INTARRAY){
-			int arraySize= symbolTable.getVarInitValue(arrow_variable);
-			for (int i = 0; i < arraySize; i++) {
-				//Todo 배열 0 ~ size - 1(포함) 까지 값 업데이트;
-				//Example int a[2] = { 1, 2 }; a -> + 3; a = { 4, 5 }
-//				result += "aload " + symbolTable.getVarId(arrow_variable) + "\n"
-//						+ "ldc " + i + "\n"
-//						+ expr;
-//				result += op;
-//				result += "iastore " +
-			}
+			// TODO 해당 반복문은 while문으로 대체되었다.
+			String start = symbolTable.newLabel();
+			String end = symbolTable.newLabel();
+
+			// TODO 반복문에서 쓰일 index를 생성한다. 새롭게 만든 getTempValue 함수
+			int index = symbolTable.getTempValue();
+			result += "ldc 0\n"
+					+ "istore " + index + "\n";
+
+			// TODO 반복문의 시작을 나타낸다.
+			result += start + ":\n";
+
+			// TODO 배열의 길이를 얻는다.
+			result += "aload " + symbolTable.getVarId(arrow_variable) + "\n"
+					+ "arraylength\n"
+					+ "iload " + index + "\n"
+					+ "isub\n"
+					+ "ifle " + end + "\n";
+
+			result += "aload " + symbolTable.getVarId(arrow_variable) + "\n"
+					+ "iload " + index + "\n"
+					+ "aload " + symbolTable.getVarId(arrow_variable) + "\n"
+					+ "iload " + index + "\n"
+					+ "iaload" + "\n"
+					+ expr + "\n"
+					+ op + "\n"
+					+ "iastore\n";
+
+			result += "iload " + index + "\n"
+					+ "ldc 1\n"
+					+ "iadd\n"
+					+ "istore " + index + "\n";
+
+			// TODO 반복문의 마지막을 나타낸다.
+			result += "goto " + start + "\n"
+					+ end + ":\n";
 		}
 
 		newTexts.put(ctx, result);
