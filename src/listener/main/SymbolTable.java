@@ -184,5 +184,8 @@ public class SymbolTable {
 		sname += getVarId(ctx.IDENT().getText());
 		return sname;
 	}
-	
+
+	public int getTempValue() {
+		return _localVarID++;
+	}
 }
